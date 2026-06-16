@@ -106,6 +106,7 @@ export default function SignUp() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
                 required
                 minLength={8}
                 className="border-gray-300 focus:border-primary focus:ring-primary"

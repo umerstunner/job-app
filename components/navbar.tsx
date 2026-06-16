@@ -1,8 +1,7 @@
 "use client";
-import { Briefcase, Droplet } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Briefcase } from "lucide-react";
 import Link from "next/link";
-import { getSession, signOut } from "@/lib/auth/auth";
+import { Button } from "@/components/ui/button";
 import {
 	DropdownMenu,
 	DropdownMenuContent,
@@ -26,7 +25,7 @@ export default function Navbar() {
 					className="flex items-center gap-2 text-xl font-semibold text-primary"
 				>
 					<Briefcase />
-					Job tracker
+					Job Tracker
 				</Link>
 				<div className="flex items-center gap-4">
 					{session?.user ? (
@@ -45,9 +44,9 @@ export default function Navbar() {
 										<Button
 											{...props}
 											variant="ghost"
-											className="text-gray-700 hover:text-black"
+											className="relative h-8 w-8 rounded-full"
 										>
-											<Avatar>
+											<Avatar className="h-8 w-8">
 												<AvatarFallback className="bg-primary text-white">
 													{session.user.name[0].toUpperCase()}
 												</AvatarFallback>
@@ -56,15 +55,18 @@ export default function Navbar() {
 									)}
 								/>
 
-								<DropdownMenuContent>
+								<DropdownMenuContent className="w-56" align="end">
 									<DropdownMenuGroup>
-
-									<DropdownMenuLabel>
-										<div>
-											<p>{session.user.name}</p>
-											<p>{session.user.email}</p>
-										</div>
-									</DropdownMenuLabel>
+										<DropdownMenuLabel className="font-normal">
+											<div className="flex flex-col space-y-1">
+												<p className="text-sm font-medium leading-none">
+													{session.user.name}
+												</p>
+												<p className="text-xs leading-none text-muted-foreground">
+													{session.user.email}
+												</p>
+											</div>
+										</DropdownMenuLabel>
 									</DropdownMenuGroup>
 									<SignOutBtn />
 								</DropdownMenuContent>
@@ -80,8 +82,8 @@ export default function Navbar() {
 									Log In
 								</Button>
 							</Link>
-							<Link href="/sign-up" className="">
-								<Button className="bg-primary hover:bg-primary/90 ">
+							<Link href="/sign-up">
+								<Button className="bg-primary hover:bg-primary/90">
 									Start for free
 								</Button>
 							</Link>
