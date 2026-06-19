@@ -1,19 +1,20 @@
 "use client";
+
+import { Plus } from "lucide-react";
+import { Button } from "./ui/button";
 import {
 	Dialog,
 	DialogContent,
-	DialogHeader,
 	DialogDescription,
-	DialogTrigger,
-	DialogTitle,
 	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
 } from "./ui/dialog";
-import { Button } from "./ui/button";
-import { Plus } from "lucide-react";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { useState } from "react";
+import React, { useState } from "react";
 import { createJobApplication } from "@/lib/actions/job-applications";
 
 interface CreateJobApplicationDialogProps {
@@ -36,7 +37,7 @@ export default function CreateJobApplicationDialog({
 	columnId,
 	boardId,
 }: CreateJobApplicationDialogProps) {
-	const [open, setOpen] = useState(false);
+	const [open, setOpen] = useState<boolean>(false);
 	const [formData, setFormData] = useState(INITIAL_FORM_DATA);
 
 	async function handleSubmit(e: React.FormEvent) {
@@ -53,11 +54,11 @@ export default function CreateJobApplicationDialog({
 					.filter((tag) => tag.length > 0),
 			});
 
-			if (result.error) {
-				console.error(result.error);
-			} else {
+			if (!result.error) {
 				setFormData(INITIAL_FORM_DATA);
 				setOpen(false);
+			} else {
+				console.error("Failed to create job: ", result.error);
 			}
 		} catch (err) {
 			console.error(err);
@@ -175,6 +176,7 @@ export default function CreateJobApplicationDialog({
 							/>
 						</div>
 					</div>
+
 					<DialogFooter>
 						<Button
 							type="button"
