@@ -68,12 +68,16 @@ export default function JobApplicationCard({
 								<DropdownMenuTrigger
 									render={(props) => (
 										<Button
+											{...props}
 											variant="ghost"
 											size="icon"
 											className="h-6 w-6 text-muted-foreground hover:bg-gray-200"
-											onClick={(e) => e.stopPropagation()}
+											onClick={(e) => {
+												e.stopPropagation();
+												props.onClick?.(e);
+											}}
 										>
-											<MoreVertical />
+											<MoreVertical className="h-4 w-4" />
 										</Button>
 									)}
 								/>

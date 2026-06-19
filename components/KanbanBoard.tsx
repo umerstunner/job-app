@@ -86,6 +86,7 @@ function DroppableColumn({
 						<DropdownMenuTrigger
 							render={(props) => (
 								<Button
+									{...props}
 									variant="ghost"
 									size="icon"
 									className="h-6 w-6 text-white hover:bg-white/20"

@@ -52,12 +52,14 @@ export default function CreateJobApplicationDialog({columnId, boardId}: CreateJo
 
     return (
 			<Dialog open={open} onOpenChange={setOpen}>
-				<DialogTrigger>
-					<Button variant="outline" size="sm" className="w-full">
-						<Plus />
-						Add Job
-					</Button>
-				</DialogTrigger>
+				<DialogTrigger
+					render={(props) => (
+						<Button {...props} variant="outline" size="sm" className="w-full">
+							<Plus />
+							Add Job
+						</Button>
+					)}
+				/>
 				<DialogContent>
 					<DialogHeader>
 						<DialogTitle>Add Job Application</DialogTitle>
@@ -159,12 +161,16 @@ export default function CreateJobApplicationDialog({columnId, boardId}: CreateJo
 								/>
 							</div>
 						</div>
-                        <DialogFooter>
-                            <Button type="button" variant="outline" onClick={() => setOpen(false)}>
-                                Cancel
-                            </Button>
-                            <Button type="submit">Add Application</Button>
-                        </DialogFooter>
+						<DialogFooter>
+							<Button
+								type="button"
+								variant="outline"
+								onClick={() => setOpen(false)}
+							>
+								Cancel
+							</Button>
+							<Button type="submit">Add Application</Button>
+						</DialogFooter>
 					</form>
 				</DialogContent>
 			</Dialog>
