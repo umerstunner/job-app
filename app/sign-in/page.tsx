@@ -2,12 +2,12 @@
 
 import { Button } from "@/components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
+	Card,
+	CardContent,
+	CardDescription,
+	CardFooter,
+	CardHeader,
+	CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,39 +17,39 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export default function SignIn() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
 
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+	const [error, setError] = useState("");
+	const [loading, setLoading] = useState(false);
 
-  const router = useRouter();
+	const router = useRouter();
 
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
+	async function handleSubmit(e: React.FormEvent) {
+		e.preventDefault();
 
-    setError("");
-    setLoading(true);
+		setError("");
+		setLoading(true);
 
-    try {
-      const result = await signIn.email({
-        email,
-        password,
-      });
+		try {
+			const result = await signIn.email({
+				email,
+				password,
+			});
 
-      if (result.error) {
-        setError(result.error.message ?? "Failed to sign in");
-      } else {
-        router.push("/dashboard");
-      }
-    } catch (err) {
-      setError("An unexpected error occurred");
-    } finally {
-      setLoading(false);
-    }
-  }
+			if (result.error) {
+				setError(result.error.message ?? "Failed to sign in");
+			} else {
+				router.push("/dashboard");
+			}
+		} catch (err) {
+			setError("An unexpected error occurred");
+		} finally {
+			setLoading(false);
+		}
+	}
 
-  return (
+	return (
 		<div className="flex min-h-[calc(100vh-4rem)] items-center justify-center bg-white p-4">
 			<Card className="w-full max-w-md border-gray-200 shadow-lg">
 				<CardHeader className="space-y-1">
